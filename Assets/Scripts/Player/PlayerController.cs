@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     public int health;
 
     public Rigidbody2D rg;
-    public Vector2 colliderSize;
+    public Vector2 attackColliderSize;
 
-    public Transform groundCheckObject;
+    public Transform groundCheckCenter;
     public Transform attackRangeCenter;
 
     public LayerMask obstacleLayer;
@@ -23,22 +23,23 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isSpecialMoveActivated;
     private bool isAttacking;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
         startedPosition = transform.position;
-        playerAttackBehavior = new PlayerAttackBehavior(attackRangeCenter,colliderSize,obstacleLayer);
+        playerAttackBehavior = new PlayerAttackBehavior(attackRangeCenter,attackColliderSize,obstacleLayer);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Check jump
-        if(isJumping && GroundedCheck())
-        {
+        Debug.Log(Time.deltaTime);
+        //Check Jump
+        isGrounded = GroundedCheck();
+        if(isJumping && isGrounded)
             isJumping = false;
-        }
 
         //Check attack
         if (isAttacking)
@@ -52,10 +53,11 @@ public class PlayerController : MonoBehaviour
 
         //Input region
         //Jump
-        if(!isJumping && Input.GetKeyDown(KeyCode.Space))
+        if(!isJumping && Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rg.AddForce(new Vector2(0, jumpHeight));
             isJumping = true;
+            Debug.Log("Jump");
         }
 
         // Special movement
@@ -81,6 +83,6 @@ public class PlayerController : MonoBehaviour
 
     private bool GroundedCheck()
     {
-        return Physics2D.OverlapCircle(groundCheckObject.position,0.1f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheckCenter.position,0.1f, groundLayer);
     }
 }
