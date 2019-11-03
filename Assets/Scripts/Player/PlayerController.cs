@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isSpecialMoveActivated;
     private bool isAttacking;
     private bool isGrounded;
+    public bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -85,4 +86,13 @@ public class PlayerController : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheckCenter.position,0.1f, groundLayer);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("FallingCollision"))
+        {
+            isDead = true;
+        }
+    }
+
 }
