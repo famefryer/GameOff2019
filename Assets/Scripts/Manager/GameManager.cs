@@ -33,9 +33,9 @@ public class GameManager : MonoBehaviour
     {
         player.gameObject.SetActive(false);
         yield return new WaitForSeconds(1f);
-        player.transform.position = playerStartPosition;
+        playerController.resetPlayer();
         player.gameObject.SetActive(true);
-
-        playerController.isDead = false;
     }
+
+    
 }

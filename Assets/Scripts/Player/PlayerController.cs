@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float jumpHeight;
-    public int health;
+    public int maxHealth;
+    public int maxMana;
 
     public Rigidbody2D rg;
     public Vector2 attackColliderSize;
@@ -24,18 +25,27 @@ public class PlayerController : MonoBehaviour
     private bool isSpecialMoveActivated;
     private bool isAttacking;
     private bool isGrounded;
+
+    [HideInInspector]
     public bool isDead;
+    [HideInInspector]
+    public int currentHealth;
+    [HideInInspector]
+    public int currentMana;
 
     // Start is called before the first frame update
     void Start()
     {
         startedPosition = transform.position;
         playerAttackBehavior = new PlayerAttackBehavior(attackRangeCenter,attackColliderSize,obstacleLayer);
+        currentHealth = 10;
+        currentMana = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Mana " + currentMana);
         //Check Jump
         isGrounded = GroundedCheck();
         if(isJumping && isGrounded)
@@ -44,9 +54,11 @@ public class PlayerController : MonoBehaviour
         //Check attack
         if (isAttacking)
         {
+            //Check is attack is completed.
             if (!animationController.isAnimationRunning)
             {
                 isAttacking = false;
+                gainMana(playerAttackBehavior.getMana());
             }
             playerAttackBehavior.colliderChecked();
         }
@@ -62,7 +74,10 @@ public class PlayerController : MonoBehaviour
         // Special movement
         if (Input.GetKeyDown(KeyCode.S))
         {
-
+            if (IsManaEnoughToUse(3))
+            {
+                currentMana -= 3;
+            }
         }
 
         //Normal Attack 
@@ -91,6 +106,38 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
         }
+    }
+
+    private void gainMana(int mana)
+    {
+        if(currentMana + mana <= maxMana)
+            currentMana += mana;
+    }
+
+    public bool IsManaEnoughToUse(int manaRequired)
+    {
+        if(currentMana - manaRequired >= 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+        }
+    }
+
+    public void resetPlayer()
+    {
+        transform.position = startedPosition;
+        isDead = false;
+        currentHealth = 10;
+        currentMana = 0;
     }
 
 }

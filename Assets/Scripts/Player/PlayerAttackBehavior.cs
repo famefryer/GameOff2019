@@ -8,7 +8,8 @@ public class PlayerAttackBehavior
     private Vector2 colliderSize;
 
     private LayerMask obstacleLayer;
-
+    private int manaGained;
+    
     public PlayerAttackBehavior(Transform attackRangeCenter, Vector2 colliderSize,LayerMask obstacleLayer)
     {
         this.attackRangeCenter = attackRangeCenter;
@@ -25,8 +26,16 @@ public class PlayerAttackBehavior
             MonsterController monster = hittedCollider.GetComponent<MonsterController>();
             Debug.Log(hittedCollider.gameObject);
             monster.DestroyItself();
+            manaGained += 1;
         }
         return null;
+    }
+
+    public int getMana()
+    {
+        int currentManaGained = manaGained;
+        manaGained = 0;
+        return currentManaGained;
     }
 
 }

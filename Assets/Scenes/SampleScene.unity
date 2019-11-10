@@ -584,7 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 1500
-  health: 2
+  maxHealth: 10
+  maxMana: 5
   rg: {fileID: 699877304}
   attackColliderSize: {x: 2.3, y: 4}
   groundCheckCenter: {fileID: 726413203}
@@ -597,6 +598,8 @@ MonoBehaviour:
     m_Bits: 256
   animationController: {fileID: 699877306}
   isDead: 0
+  currentHealth: 0
+  currentMana: 0
 --- !u!50 &699877304
 Rigidbody2D:
   serializedVersion: 4

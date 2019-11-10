@@ -24,7 +24,7 @@ public class MonsterController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController playerController = other.GetComponent<PlayerController>();
-            playerController.health -= damage;
+            playerController.takeDamage(damage);
         }
     }
 
