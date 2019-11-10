@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Time.deltaTime);
         //Check Jump
         isGrounded = GroundedCheck();
         if(isJumping && isGrounded)
@@ -58,7 +57,6 @@ public class PlayerController : MonoBehaviour
         {
             rg.AddForce(new Vector2(0, jumpHeight));
             isJumping = true;
-            Debug.Log("Jump");
         }
 
         // Special movement

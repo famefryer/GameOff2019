@@ -19,9 +19,11 @@ public class PlayerAttackBehavior
     public Transform colliderChecked()
     {
         Collider2D hittedCollider = Physics2D.OverlapBox(attackRangeCenter.position, colliderSize,obstacleLayer);
+
         if (hittedCollider.CompareTag("Monster"))
         {
             MonsterController monster = hittedCollider.GetComponent<MonsterController>();
+            Debug.Log(hittedCollider.gameObject);
             monster.DestroyItself();
         }
         return null;
