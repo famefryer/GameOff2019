@@ -6,6 +6,6 @@ using UnityEngine;
 public class RoomSet : ScriptableObject
 {
 
-    public RoomPrefab[] roomPrefabs;
+    public List<RoomPrefab> roomPrefabs;
 
 }

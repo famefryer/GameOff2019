@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public float startSpeed = 1;
     public float speedIncreaseRate = 0.1f;
-    public RoomSet[] roomSets;
+    public List<RoomSet> roomSets;
+    public int roomAmountInTheSet = 5;
     #endregion
 
     #region Private Variables
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     private Vector2 playerStartPosition;
     [HideInInspector] public float currentSpeed = 0;
     [HideInInspector] public int generatedRoomCount = 0;
+    private int currentRoomSet = 0;
+    private int currentRoomSetRoomCount = 0;
     #endregion
 
     #region Singleton
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         playerController = player.GetComponent<PlayerController>();
         playerStartPosition = player.position;
+        currentSpeed = startSpeed;
     }
 
     // Update is called once per frame
@@ -64,6 +68,7 @@ public class GameManager : MonoBehaviour
         {
             RestartGame();
         }
+        currentSpeed += Time.deltaTime * speedIncreaseRate;
     }
     #endregion
 
@@ -79,6 +84,19 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         playerController.resetPlayer();
         player.gameObject.SetActive(true);
+    }
+
+    public RoomPrefab nextRoom()
+    {
+        if(currentRoomSetRoomCount > roomAmountInTheSet)
+        {
+            if(++currentRoomSet >= roomSets.Count)
+            {
+                currentRoomSet = 0;
+            }
+        }
+        int random = Random.Range(0, roomSets[currentRoomSet].roomPrefabs.Count);
+        return roomSets[currentRoomSet].roomPrefabs[random];
     }
     #endregion
 
