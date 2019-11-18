@@ -7,11 +7,16 @@ public class GameManager : MonoBehaviour
 
     #region Inspector Variables
     public Transform player;
+    public float startSpeed = 1;
+    public float speedIncreaseRate = 0.1f;
+    public RoomSet[] roomSets;
     #endregion
 
     #region Private Variables
     private PlayerController playerController;
     private Vector2 playerStartPosition;
+    [HideInInspector] public float currentSpeed = 0;
+    [HideInInspector] public int generatedRoomCount = 0;
     #endregion
 
     #region Singleton
