@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
 
     #region Inspector Variables
     public Transform player;
-    public float startSpeed = 1;
-    public float speedIncreaseRate = 0.1f;
+    public float startSpeed = 100;
+    public float speedIncreaseRate = 10f;
     public List<RoomSet> roomSets;
     public int roomAmountInTheSet = 5;
     #endregion
@@ -25,30 +25,16 @@ public class GameManager : MonoBehaviour
     #region Singleton
     private static readonly object padlock = new object();
     private static GameManager instance = null;
-
     public static GameManager Instance
     {
         get
         {
-            lock (padlock)
-            {
-                if (instance == null)
-                {
-                    instance = new GameManager();
-                }
-                return instance;
-            }
+            return instance;
         }
-    }
-
-    private GameManager()
-    {
-        Init();
-    }
-
-    public void Init()
-    {
-        // TODO
+        private set
+        {
+            instance = value;
+        }
     }
     #endregion
 
@@ -59,20 +45,25 @@ public class GameManager : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         playerStartPosition = player.position;
         currentSpeed = startSpeed;
+        Instance = this;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerController.isDead)
+        if (playerController != null)
         {
-            RestartGame();
+            if (playerController.isDead)
+            {
+                RestartGame();
+            }
         }
-        currentSpeed += Time.deltaTime * speedIncreaseRate;
+        currentSpeed += (Time.deltaTime * speedIncreaseRate);
     }
     #endregion
 
     #region Custom Functions
+
     private void RestartGame()
     {
         StartCoroutine(HandleRestartGame());
@@ -88,16 +79,19 @@ public class GameManager : MonoBehaviour
 
     public RoomPrefab nextRoom()
     {
-        if(currentRoomSetRoomCount > roomAmountInTheSet)
+        generatedRoomCount++;
+        if (++currentRoomSetRoomCount >= roomAmountInTheSet)
         {
-            if(++currentRoomSet >= roomSets.Count)
+            if (++currentRoomSet >= roomSets.Count)
             {
                 currentRoomSet = 0;
             }
+            currentRoomSetRoomCount = 0;
         }
         int random = Random.Range(0, roomSets[currentRoomSet].roomPrefabs.Count);
         return roomSets[currentRoomSet].roomPrefabs[random];
     }
+
     #endregion
 
 }

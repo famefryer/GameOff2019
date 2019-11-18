@@ -16,7 +16,7 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        //transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,7 +24,7 @@ public class MonsterController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerController playerController = other.GetComponent<PlayerController>();
-            playerController.takeDamage(damage);
+            if(playerController != null) playerController.takeDamage(damage);
         }
     }
 

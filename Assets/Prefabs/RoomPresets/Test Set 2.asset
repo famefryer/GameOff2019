@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1efc8e22353c81a48af7b18f05715157, type: 3}
-  m_Name: TestingRoomSet1
+  m_Name: Test Set 2
   m_EditorClassIdentifier: 
   roomPrefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5590171704996627088, guid: abe9ebb1cf9ecf846956e7e8bc932eb9, type: 3}
+  - {fileID: 280430637130546676, guid: baf7ec5d095a4c747aeb6f6e1acdc4e8, type: 3}
+  - {fileID: 904601443491273075, guid: 5157262b1dec61d4abdfe4c2ed647b72, type: 3}
