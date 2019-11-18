@@ -4,10 +4,47 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Transform player;
 
+    #region Inspector Variables
+    public Transform player;
+    #endregion
+
+    #region Private Variables
     private PlayerController playerController;
     private Vector2 playerStartPosition;
+    #endregion
+
+    #region Singleton
+    private static readonly object padlock = new object();
+    private static GameManager instance = null;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            lock (padlock)
+            {
+                if (instance == null)
+                {
+                    instance = new GameManager();
+                }
+                return instance;
+            }
+        }
+    }
+
+    private GameManager()
+    {
+        Init();
+    }
+
+    public void Init()
+    {
+        // TODO
+    }
+    #endregion
+
+    #region Unity Functions
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +60,9 @@ public class GameManager : MonoBehaviour
             RestartGame();
         }
     }
+    #endregion
 
+    #region Custom Functions
     private void RestartGame()
     {
         StartCoroutine(HandleRestartGame());
@@ -36,6 +75,6 @@ public class GameManager : MonoBehaviour
         playerController.resetPlayer();
         player.gameObject.SetActive(true);
     }
+    #endregion
 
-    
 }
