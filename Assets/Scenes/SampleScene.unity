@@ -224,11 +224,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7345548787693450568, guid: 998eec7936f874e2e892afd6b447f708,
-        type: 3}
-      propertyPath: m_Name
-      value: Monster
-      objectReference: {fileID: 0}
     - target: {fileID: 7345548787693450572, guid: 998eec7936f874e2e892afd6b447f708,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -283,6 +278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7345548787693450568, guid: 998eec7936f874e2e892afd6b447f708,
+        type: 3}
+      propertyPath: m_Name
+      value: Monster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 998eec7936f874e2e892afd6b447f708, type: 3}
@@ -1088,6 +1088,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 699877302}
+  startSpeed: 100
+  speedIncreaseRate: 10
+  roomSets: []
+  roomAmountInTheSet: 5
+  currentSpeed: 0
+  generatedRoomCount: 0
 --- !u!4 &1662202766
 Transform:
   m_ObjectHideFlags: 0
