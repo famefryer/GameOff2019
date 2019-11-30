@@ -6,6 +6,7 @@ public class MonsterController : MonoBehaviour
 {
     public int damage;
     public float speed;
+    public int score = 100;
 
     public Animator animator;
     public GameObject explosionEffect;

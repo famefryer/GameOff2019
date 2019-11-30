@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float speedIncreaseRate = 10f;
     public List<RoomSet> roomSets;
     public int roomAmountInTheSet = 5;
+
+    public int currentScore = 0;
     #endregion
 
     #region Private Variables
