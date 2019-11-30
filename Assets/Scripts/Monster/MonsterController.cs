@@ -7,6 +7,9 @@ public class MonsterController : MonoBehaviour
     public int damage;
     public float speed;
 
+    public Animator animator;
+    public GameObject explosionEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,14 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        Move();
     }
 
+    private void Move()
+    {
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        explosionEffect.transform.Translate(Vector2.left * speed * Time.deltaTime);
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -30,6 +38,10 @@ public class MonsterController : MonoBehaviour
 
     public void DestroyItself()
     {
-        Destroy(gameObject);
+        animator.SetTrigger("Death");
+        Animator exAnimator = explosionEffect.GetComponent<Animator>();
+        explosionEffect.SetActive(true);
+        exAnimator.SetTrigger("Explode");
+        gameObject.SetActive(false);
     }
 }

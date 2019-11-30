@@ -20,6 +20,7 @@ public class PlayerAttackBehavior
     public Transform colliderChecked()
     {
         Collider2D hittedCollider = Physics2D.OverlapBox(attackRangeCenter.position, colliderSize,obstacleLayer);
+        Debug.Log(hittedCollider.gameObject.tag);
 
         if (hittedCollider.CompareTag("Monster"))
         {
