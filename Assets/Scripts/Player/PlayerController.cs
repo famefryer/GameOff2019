@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isJumping;
     private bool isSpecialMoveActivated;
     private bool isAttacking;
+    private bool isSpecialAttacking;
     private bool isGrounded;
 
     //UI
@@ -61,12 +62,23 @@ public class PlayerController : MonoBehaviour
         if (isAttacking)
         {
             //Check is attack is completed.
-            if (!animationController.isAnimationRunning)
+            if (!animationController.isAttackingAnimationRunning)
             {
                 isAttacking = false;
                 gainMana(playerAttackBehavior.getMana());
             }
-            playerAttackBehavior.colliderChecked();
+            playerAttackBehavior.colliderChecked(ATTACK_TYPE.NORMAL);
+        }
+
+        //Check Special Attack
+        if (isSpecialAttacking)
+        {
+            //Check is attack is completed.
+            if (!animationController.isSpecialAttackingAnimationRunning)
+            {
+                isSpecialAttacking = false;
+            }
+            playerAttackBehavior.colliderChecked(ATTACK_TYPE.SPECIAL);
         }
 
         //Input region
@@ -84,6 +96,8 @@ public class PlayerController : MonoBehaviour
             {
                 currentMana -= 5;
                 manaBarController.updateValue(currentMana, 0, maxMana);
+                animationController.PlaySpecialAttack();
+                isSpecialAttacking = true;
             }
         }
 

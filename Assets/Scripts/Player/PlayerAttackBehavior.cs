@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ATTACK_TYPE
+{
+    NORMAL,
+    SPECIAL
+}
+
 public class PlayerAttackBehavior
 {
     private Transform attackRangeCenter;
@@ -17,7 +23,7 @@ public class PlayerAttackBehavior
         this.obstacleLayer = obstacleLayer;
     }
 
-    public Transform colliderChecked()
+    public Transform colliderChecked(ATTACK_TYPE attackType)
     {
         Collider2D hittedCollider = Physics2D.OverlapBox(attackRangeCenter.position, colliderSize,obstacleLayer);
 
@@ -27,7 +33,8 @@ public class PlayerAttackBehavior
             GameManager.Instance.currentScore += monster.score;
             Debug.Log(GameManager.Instance.currentScore);
             monster.DestroyItself();
-            manaGained += 1;
+            if(attackType  == ATTACK_TYPE.NORMAL)
+                manaGained += 1;
         }
         return null;
     }
