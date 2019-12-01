@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking;
     private bool isGrounded;
 
+    //UI
+    [SerializeField]
+    private BarController healthBarController;
+    [SerializeField]
+    private BarController manaBarController;
+
     [HideInInspector]
     public bool isDead;
     [HideInInspector]
@@ -77,6 +83,7 @@ public class PlayerController : MonoBehaviour
             if (IsManaEnoughToUse(3))
             {
                 currentMana -= 3;
+                manaBarController.updateValue(currentMana, 0, maxMana);
             }
         }
 
@@ -112,6 +119,7 @@ public class PlayerController : MonoBehaviour
     {
         if(currentMana + mana <= maxMana)
             currentMana += mana;
+        manaBarController.updateValue(currentMana, 0, maxMana);
     }
 
     public bool IsManaEnoughToUse(int manaRequired)
@@ -126,6 +134,7 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBarController.updateValue(currentHealth, 0, maxHealth);
         if (currentHealth <= 0)
         {
             isDead = true;
