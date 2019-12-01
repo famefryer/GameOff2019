@@ -80,9 +80,9 @@ public class PlayerController : MonoBehaviour
         // Special movement
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (IsManaEnoughToUse(3))
+            if (IsManaEnoughToUse(5))
             {
-                currentMana -= 3;
+                currentMana -= 5;
                 manaBarController.updateValue(currentMana, 0, maxMana);
             }
         }
