@@ -640,7 +640,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillAmount: 1
+  barType: 0
   consent: {fileID: 1516157030}
+  animator: {fileID: 0}
 --- !u!1 &367198922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,7 +1008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 1500
   maxHealth: 10
-  maxMana: 5
+  maxMana: 8
   rg: {fileID: 699877304}
   attackColliderSize: {x: 2.3, y: 4}
   groundCheckCenter: {fileID: 726413203}
@@ -1136,6 +1138,7 @@ GameObject:
   - component: {fileID: 838063660}
   - component: {fileID: 838063659}
   - component: {fileID: 838063658}
+  - component: {fileID: 838063661}
   m_Layer: 5
   m_Name: Manabar
   m_TagString: Untagged
@@ -1177,7 +1180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillAmount: 1
+  barType: 1
   consent: {fileID: 228206280}
+  animator: {fileID: 838063661}
 --- !u!114 &838063659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,6 +1220,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838063656}
   m_CullTransparentMesh: 0
+--- !u!95 &838063661
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838063656}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 38503a03cccd34893b8325a67bc0f605, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &842746329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1275,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.6, y: -42}
+  m_AnchoredPosition: {x: 19.1, y: -42}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842746331
@@ -2238,6 +2262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Coin
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616861225637302571, guid: ec618096cefbe4024946a02d6574ee7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8616861225637302574, guid: ec618096cefbe4024946a02d6574ee7a,
         type: 3}
