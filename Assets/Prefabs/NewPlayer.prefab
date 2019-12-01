@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2890792343235344630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09, y: -0.01, z: -5}
+  m_LocalPosition: {x: -0.09, y: 0.09, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4639757464586598592}
@@ -124,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4639757462987705885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.64, y: 0, z: 0}
+  m_LocalPosition: {x: 1.96, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4639757464586598592}
@@ -280,7 +280,7 @@ MonoBehaviour:
   maxHealth: 10
   maxMana: 8
   rg: {fileID: 4639757464586598606}
-  attackColliderSize: {x: 2.3, y: 4}
+  attackColliderSize: {x: 1.2, y: 4}
   groundCheckCenter: {fileID: 4639757464615375077}
   attackRangeCenter: {fileID: 4639757462987705882}
   obstacleLayer:
@@ -308,7 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4639757464586598607}
-  isAnimationRunning: 0
+  isAttackingAnimationRunning: 0
+  isSpecialAttackingAnimationRunning: 0
 --- !u!70 &4639757464586598594
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -245,8 +245,8 @@ MonoBehaviour:
   platform: {fileID: 8180849103386827902, guid: 6b64d1608bb94452a8d30e12b829d4b2,
     type: 3}
   generationPoint: {fileID: 86987190}
-  minDistance: 38.3
-  maxDistance: 38.4
+  minDistance: 37.5
+  maxDistance: 38
 --- !u!4 &86987190
 Transform:
   m_ObjectHideFlags: 0
@@ -1228,7 +1228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monster: {fileID: 5488644447500607424, guid: f44a3f0faa0944f62ada223a200906c9, type: 3}
   startMonsterSpawnTime: 1
-  minDelayMonsterSpawnTime: 2
+  minDelayMonsterSpawnTime: 0.5
   decreaseMonsterSpawnTime: 0.05
 --- !u!4 &1097567038
 Transform:
@@ -1695,6 +1695,7 @@ MonoBehaviour:
   roomSets: []
   roomAmountInTheSet: 5
   currentScore: 0
+  multiplySpeed: 1
   currentSpeed: 0
   generatedRoomCount: 0
 --- !u!4 &1662202766
