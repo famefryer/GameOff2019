@@ -25,8 +25,8 @@ public class MonsterController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
-        explosionEffect.transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * Time.deltaTime * GameManager.Instance.multiplySpeed);
+        explosionEffect.transform.Translate(Vector2.left * speed * Time.deltaTime * GameManager.Instance.multiplySpeed);
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

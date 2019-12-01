@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int roomAmountInTheSet = 5;
 
     public int currentScore = 0;
+    public int multiplySpeed = 1;
     #endregion
 
     #region Private Variables

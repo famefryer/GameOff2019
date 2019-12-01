@@ -17,7 +17,7 @@ public class PlatformController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * Time.deltaTime * GameManager.Instance.multiplySpeed);
 
         if (outlierController.IsObjectOutOfOutlier(transform))
         {

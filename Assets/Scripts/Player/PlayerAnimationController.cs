@@ -18,6 +18,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetTrigger("SpecialAttack");
         isSpecialAttackingAnimationRunning = true;
+        GameManager.Instance.multiplySpeed = 2;
         StartCoroutine(WaitForSpecialAttackEnd(5f));
     }
 
@@ -26,6 +27,7 @@ public class PlayerAnimationController : MonoBehaviour
         yield return new WaitForSeconds(time);
         isSpecialAttackingAnimationRunning = false;
         animator.SetTrigger("EndSpecialAttack");
+        GameManager.Instance.multiplySpeed = 1;
     }
     public void AttackingAnimationComplete()
     {
